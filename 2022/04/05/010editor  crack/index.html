@@ -139,18 +139,43 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/images/hello.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >hello heaven</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://s2.loli.net/2022/05/09/BKdW1clqGje3Xwn.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >010editor crack</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="Hello-Heaven"><a href="#Hello-Heaven" class="headerlink" title="Hello Heaven"></a>Hello Heaven</h1><p>第一篇博客！！！！！</p>
-<p>写什么呢写什么呢，我也不知道写什么，但是希望之后能常更新！</p>
-<p>感觉自己并不是一个像大家那么厉害的CTFer</p>
-<p>所以可能也会记录一些美（mo工（yu的过程</p>
-<p>当然主要还是希望能通过博客，一边记录自己的学习过程，一边复习进步！</p>
-<p>最后，和西珥一起拥抱光明叭！！！！！！！</p>
-<p><del>（好，行，根本看不见我的小精灵，下次一定www</del></p>
+                <h1 id="Crack-010editor"><a href="#Crack-010editor" class="headerlink" title="Crack 010editor"></a>Crack 010editor</h1><blockquote>
+<p>010 Editor 是适用于Microsoft Windows、Linux和macOS的商业十六进制编辑器和文本编辑器。通常 010 Editor 用于编辑文本文件、二进制文件、硬盘驱动器、进程、标记数据（例如XML、HTML）、源代码（例如C++、PHP、JavaScript、shell 脚本（例如Bash、批处理文件）、日志文件等。通过使用二进制模板可以编辑多种二进制数据格式。</p>
+</blockquote>
+<p>简单来讲，就是很不错的十六进制编辑器，但是它做得可能有点问题（），导致破解起来非常的容易（？</p>
+<p>动手！</p>
+<p>首先，非常容易忽略的细节，就是需要以管理员身份运行，简单的做法就是将整个文件夹直接复制到桌面，最后才能成功破解，如果没有，就会出现下图</p>
+<p><img src="https://s2.loli.net/2022/05/09/CqspKWfOmeTGLwa.png" alt="333_20220401235211.png"></p>
+<p>不解决的话最后一步也是完成不了的。</p>
+<p>接着正常情况下，010editor是有试用期的，但是因为这里我的已经是破解过的，（所以网上偷了个别人的图），试用期过后就会需要购买，如图（侵权联系我删）</p>
+<p><img src="https://s2.loli.net/2022/05/09/zpNYrnw1APm9cqv.png" alt="image.png"></p>
+<p>上图就是破解关键点，然后就可以直接拖进IDA里面，<code>shift</code>+<code>F12</code>搜索一下字符串</p>
+<p><img src="https://s2.loli.net/2022/05/09/5OMJNdP3gTW1otc.png" alt="微信图片_20220509201932.png"></p>
+<p>双击后<code>x</code>一下查找交叉引用</p>
+<p><img src="https://s2.loli.net/2022/05/09/JTtuyhp7mnNe8dH.png" alt="Snipaste_2022-05-09_20-21-46.png"></p>
+<p>找到后<code>F5</code>反编译，很快发现要注册成功需要让这个<code>v17</code>等于<strong>219（0xDB）</strong></p>
+<p><img src="https://s2.loli.net/2022/05/09/OQy7kDrjxgCFoWE.png" alt="Snipaste_2022-05-09_20-23-39.png"></p>
+<p>那就找一下<code>v17</code>是打哪里来的，很快发现就在上面有个函数给<code>v17</code>赋值了，那么只要让这个函数返回值是<strong>217</strong>，就可以成功注册了！</p>
+<p><img src="https://s2.loli.net/2022/05/09/7BavwtHGlebSzq8.png" alt="image.png"></p>
+<p>进入函数，<code>tab</code>一下看汇编，如不是代码块视图按一下空格转成好看的代码块视图，要让这个函数返回一个值，那<code>jz</code>就没必要啦，所以<code>nop</code>掉！！！（patch快捷键<code>ctrl</code>+<code>alt</code>+<code>k</code>)</p>
+<p><img src="https://s2.loli.net/2022/05/09/cjflgtNDKMmBhXP.png" alt="Snipaste_2022-05-09_20-43-16.png"></p>
+<p>可以<code>F5</code>一下看看现在的函数——跟想象中的一样！！！只要把**275(0x113)<strong>改成</strong>219(0x0DB)**就好啦！！</p>
+<p><img src="C:\Users\krylo\AppData\Roaming\Typora\typora-user-images\image-20220509205027819.png" alt="image-20220509205027819"></p>
+<p>其实刚才patch的时候已经发现nop后面就有<code>mov     eax, 113h</code>这样的赋值操作了，所以很容易想到把<strong>113h</strong>改成<strong>0DBh</strong>就修改完成了！！！</p>
+<p><img src="https://s2.loli.net/2022/05/09/Ywi9zXDhp1fdjnT.png" alt="Snipaste_2022-05-09_20-55-07.png"></p>
+<p>检查一下，成功！</p>
+<p><img src="https://s2.loli.net/2022/05/09/h87vHil9TV2wfQO.png" alt="Snipaste_2022-05-09_20-55-57.png"></p>
+<p>最后一步不要忘了，<code>Edit</code>-&gt;<code>Patch program</code>-&gt;<code>Apply patches to input file...</code></p>
+<p><img src="https://s2.loli.net/2022/05/09/63wzXGxPClmKNAR.png" alt="Snipaste_2022-05-09_20-58-56.png"></p>
+<p>关掉IDA，重新打开010editor，随便输个什么东西都会顺利进入！！！大功告成！！</p>
+<p>可惜了这么激动人心的时刻没有截图，那那就放个封面图庆祝一下吧！！！约尔姐姐杀我（bushi</p>
+<p><img src="https://s2.loli.net/2022/05/09/BKdW1clqGje3Xwn.png" alt="yuer.png"></p>
+<p>（图侵联删）</p>
 
             </div>
 
@@ -213,8 +238,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'https://ba1van4.icu/2022/03/27/hello-world/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://ba1van4.icu/2022/03/27/hello-world/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://ba1van4.icu/2022/04/05/010editor%20%20crack/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://ba1van4.icu/2022/04/05/010editor%20%20crack/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
