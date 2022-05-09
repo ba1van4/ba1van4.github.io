@@ -165,7 +165,7 @@
 <p>进入函数，<code>tab</code>一下看汇编，如不是代码块视图按一下空格转成好看的代码块视图，要让这个函数返回一个值，那<code>jz</code>就没必要啦，所以<code>nop</code>掉！！！（patch快捷键<code>ctrl</code>+<code>alt</code>+<code>k</code>)</p>
 <p><img src="https://s2.loli.net/2022/05/09/cjflgtNDKMmBhXP.png" alt="Snipaste_2022-05-09_20-43-16.png"></p>
 <p>可以<code>F5</code>一下看看现在的函数——跟想象中的一样！！！只要把**275(0x113)<strong>改成</strong>219(0x0DB)**就好啦！！</p>
-<p><img src="C:\Users\krylo\AppData\Roaming\Typora\typora-user-images\image-20220509205027819.png" alt="image-20220509205027819"></p>
+<p><img src="https://s2.loli.net/2022/05/09/5UTbY3OEF9ZaBXk.png" alt="Snipaste_2022-05-09_22-01-51.png"></p>
 <p>其实刚才patch的时候已经发现nop后面就有<code>mov     eax, 113h</code>这样的赋值操作了，所以很容易想到把<strong>113h</strong>改成<strong>0DBh</strong>就修改完成了！！！</p>
 <p><img src="https://s2.loli.net/2022/05/09/Ywi9zXDhp1fdjnT.png" alt="Snipaste_2022-05-09_20-55-07.png"></p>
 <p>检查一下，成功！</p>
